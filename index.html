@@ -1,0 +1,177 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Campanha Pietro — O Escudeiro que ninguém pediu</title><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22M32%204%2056%2012v20c0%2014-10%2023-24%2028C18%2055%208%2046%208%2032V12z%22%20fill%3D%22%237a1414%22%20stroke%3D%22%23b08d4a%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M32%2014v34M24%2022h16%22%20stroke%3D%22%23d9cfb8%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E"><style>
+:root{--bg:#0b0908;--stone:#171310;--blood:#7a1414;--gold:#b08d4a;--parch:#d9cfb8;--serif:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 50% 0,#2a1210 0,var(--bg) 60%) fixed;color:var(--parch);font:1.05rem/1.7 var(--serif);overflow-x:hidden}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+main{position:relative;z-index:1}
+.s{min-height:100vh;padding:7rem 1.4rem 4rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;text-align:center;max-width:920px;margin:auto}
+h1,h2,h3{font-weight:700;letter-spacing:.04em;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(2.4rem,9vw,5.6rem);color:var(--parch);text-shadow:0 0 40px #7a141499}
+h2{font-size:clamp(1.6rem,5vw,2.8rem)}h2.big{font-size:clamp(2.2rem,8vw,4.6rem)}h3{font-size:clamp(1.1rem,3vw,1.6rem);color:var(--gold)}
+#hero h2{color:var(--gold);letter-spacing:.25em;font-size:clamp(.9rem,3vw,1.5rem)}
+blockquote{font-size:clamp(1.2rem,3.4vw,2rem);font-style:italic;border-block:1px solid var(--gold);padding:1.2rem 0;max-width:34ch}
+.runas{color:var(--blood);letter-spacing:.6em;font-size:1.4rem;animation:glow 4s infinite alternate}
+@keyframes glow{to{text-shadow:0 0 18px var(--blood);color:#a32020}}
+.gold{color:var(--gold)}.red{color:#c43030}.warn{color:#e0a030}.q{font-style:italic;font-size:1.3rem}
+.txt{max-width:60ch;text-align:left;display:grid;gap:.9rem}#hero .txt{text-align:center}
+.btn{font:700 .95rem var(--serif);letter-spacing:.12em;color:var(--parch);background:linear-gradient(#2a1a14,#160e0b);border:1px solid var(--gold);padding:.95rem 1.8rem;cursor:pointer;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:.25s}
+.btn:hover,.btn:focus-visible{background:var(--blood);box-shadow:0 0 28px #7a1414;outline:2px solid var(--gold);outline-offset:3px}
+.btn.red{border-color:#c43030}.btn.blue{border-color:#4a78b0}
+.box{border:1px solid var(--gold);background:#17131099;backdrop-filter:blur(4px);padding:1.3rem 1.6rem;text-align:left;max-width:60ch;width:100%;box-shadow:inset 0 0 40px #000,0 0 30px #00000088}
+.box b{color:var(--gold);letter-spacing:.15em;display:block;margin-bottom:.5rem}#ans:empty,#res:empty{display:none}
+.disc{width:100%;max-width:640px;background:#1b1a22;border-radius:8px;padding:1rem;display:grid;gap:.9rem;text-align:left;font:.95rem/1.5 system-ui,sans-serif;border:1px solid #2c2b36}
+.m{display:flex;gap:.8rem}.m u{flex:none;width:38px;height:38px;border-radius:50%;background:#5865f2;display:grid;place-items:center;text-decoration:none;font-weight:700}
+.m b{display:block;color:#fff}.m.dm{border-top:1px dashed #555;padding-top:.9rem}.m.dm u{background:var(--blood)}
+#evid{list-style:none;display:grid;gap:.6rem;text-align:left}#evid li,#flow li{opacity:0;transform:translateX(-30px);transition:.6s}
+.on #evid li,#flow li.on,#evid li.on{opacity:1;transform:none}
+#flow{list-style:none;display:grid;gap:1.4rem;counter-reset:n;width:100%;max-width:520px}
+#flow li{counter-increment:n;border-left:3px solid var(--gold);padding:.4rem 1.2rem;text-align:left;font-weight:700;letter-spacing:.06em;position:relative}
+#flow li::before{content:"0" counter(n);color:var(--blood);font-size:2rem;margin-right:1rem;text-shadow:0 0 12px var(--blood)}
+#flow li:last-child{border-color:var(--blood)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;width:100%}
+.card{background:var(--stone);border:1px solid #3a2e22;padding:1.3rem;text-align:left;cursor:default;transition:.3s;font-size:.98rem}
+.card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 10px 30px #0009,0 0 20px #b08d4a33}
+.card b{display:block;color:var(--gold);margin-bottom:.4rem;font-size:1.05rem}button.card{font:inherit;color:inherit;cursor:pointer}
+.card .a{display:none;margin-top:.8rem;padding-top:.8rem;border-top:1px dashed var(--blood);color:var(--parch)}.card.open .a{display:block}
+.card small{opacity:.6}
+details{border-bottom:1px solid #3a2e22;padding:.9rem 0}summary{cursor:pointer;color:var(--gold);font-weight:700}details p{margin-top:.6rem}
+.storm{position:relative;overflow:hidden}#pop{position:absolute;inset:0;pointer-events:none}
+.pp{position:absolute;font:900 clamp(1.2rem,5vw,2.6rem) system-ui;color:#e33;animation:shake .15s infinite;text-shadow:0 0 12px #f00}
+@keyframes shake{50%{transform:translate(3px,-3px) rotate(1deg)}}
+#calm{opacity:0;transition:1.5s;display:grid;gap:1.3rem;place-items:center}#calm.on{opacity:1}
+.end{gap:1.1rem}#seq .l{opacity:0;transform:scale(.96);transition:1.4s;margin:.5rem 0}#seq .l.on{opacity:1;transform:none}
+.l.t{font-size:clamp(1.6rem,6vw,3.2rem);font-weight:700}.l.k{color:var(--gold);font-size:clamp(1.1rem,3vw,1.5rem);font-style:italic}
+.r{opacity:0;transform:translateY(24px);transition:.9s}.r.on{opacity:1;transform:none}
+#bar{position:fixed;top:0;left:0;right:0;z-index:9;background:#0b0908ee;border-bottom:1px solid #3a2e22;padding:.55rem 3.4rem .55rem 1rem}
+#bar ol{display:flex;justify-content:space-between;list-style:none;font:.68rem system-ui;letter-spacing:.12em;max-width:760px;margin:auto}#bar li{opacity:.4;transition:.4s}#bar li.on{opacity:1;color:var(--gold)}
+#fill{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--blood),var(--gold));transition:width .3s}
+#snd{position:fixed;top:.35rem;right:.7rem;z-index:10;width:36px;height:36px;border-radius:50%;background:none;color:var(--gold);border:1px solid var(--gold);cursor:pointer;font-size:1rem}#snd.on{background:var(--blood);color:#fff}
+#slash{position:fixed;inset:0;z-index:20;pointer-events:none;background:linear-gradient(105deg,transparent 45%,#fff 49.5%,var(--gold) 50%,transparent 50.6%),#000;opacity:0;clip-path:inset(0 100% 0 0)}
+#slash.go{animation:cut 1s ease-in-out}@keyframes cut{0%{opacity:1;clip-path:inset(0 100% 0 0)}45%{clip-path:inset(0)}100%{opacity:0;clip-path:inset(0)}}
+@media(max-width:600px){#bar ol{font-size:.5rem;letter-spacing:.02em}.s{padding-top:6rem}.duo{flex-direction:column}}
+.duo{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:center}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.r{opacity:1;transform:none}}
+.glitch{animation:gl 5s infinite}@keyframes gl{0%,90%,100%{text-shadow:none}92%{text-shadow:-2px 0 #3fd0b0,2px 0 #c43030}95%{text-shadow:2px 0 #3fd0b0,-2px 0 #c43030}}
+.term{width:100%;max-width:60ch;text-align:left;background:#080c0b;border:1px solid #2d4a40;border-left:3px solid #3fd0b0;padding:1.1rem 1.3rem;font:.95rem/1.9 ui-monospace,Menlo,Consolas,monospace;overflow-wrap:anywhere;box-shadow:0 0 30px #3fd0b022,inset 0 0 30px #000;min-height:9.5rem}
+.term .rn{color:#3fd0b0}.term .gold{padding-left:2ch}.cur::after{content:"▌";color:#3fd0b0;animation:bl .8s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+.seal{text-align:center;border-style:dashed}.seal p{font-style:italic;font-size:1.15rem}
+#ia::after{content:"";display:block;width:1px;height:14vh;background:linear-gradient(var(--gold),transparent);margin-top:1.5rem}
+.vb{text-align:center;display:grid;gap:1rem;justify-items:center;max-width:640px;box-shadow:0 0 40px #7a141455,inset 0 0 40px #000}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;width:100%}.vbtn{min-height:96px;font-size:1.25rem}.vbtn[data-v=yes]{border-color:#d4b060}.vbtn[data-v=no]{border-color:#c43030}
+.vbtn.sel{background:var(--blood);box-shadow:0 0 30px #7a1414;outline:2px solid var(--parch)}.btn:disabled{opacity:.4;cursor:not-allowed}
+textarea{width:100%;min-height:110px;background:#0a0807;color:var(--parch);border:1px solid var(--gold);padding:.8rem;font:16px/1.5 var(--serif);resize:vertical}
+.cnt{font:.8rem system-ui;opacity:.7;text-align:right;width:100%}.who{display:flex;align-items:center;gap:.6rem;font:.85rem system-ui;opacity:.9;flex-wrap:wrap;justify-content:center}.who img{width:28px;height:28px;border-radius:50%;border:1px solid var(--gold)}
+.lnk{background:none;border:0;color:var(--gold);text-decoration:underline;cursor:pointer;font:inherit}.err{color:#e0a030}.vb small{opacity:.7}
+#vres,#vops{width:100%;max-width:640px;display:grid;gap:1rem}.rw{text-align:left}.rw .bar{height:18px;background:#000;border:1px solid var(--gold);margin:.3rem 0}.rw .bar i{display:block;height:100%;width:0;transition:width 1.3s;background:linear-gradient(90deg,var(--blood),var(--gold))}
+.tlx{display:grid;gap:.6rem}.tlx p{opacity:0;transform:translateY(10px);transition:1s}.tlx p.on{opacity:1;transform:none}.hg{font-size:2.6rem;display:inline-block;animation:sp 3s ease-in-out infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.fin{display:grid;gap:1rem;margin-top:3rem}
+</style></head><body>
+<canvas id="fx"></canvas><div id="slash"></div>
+<nav id="bar"><i id="fill"></i><ol><li>CASO</li><li>INVESTIGAÇÃO</li><li>DECISÃO</li><li>CAMPANHA</li><li>FINAL</li></ol></nav>
+<button id="snd" aria-label="Ativar música" title="Música (opcional)">♪</button>
+<main>
+<section id="hero" class="s" data-st="0"><div class="runas">ᚦ ᛟ ᚱ ᚾ ᛉ ᚨ ᛏ ᛞ</div><h1>⚔️ CAMPANHA PIETRO</h1><h2>O ESCUDEIRO QUE NINGUÉM PEDIU</h2><blockquote>“Você não precisa gostar de mim. Só precisa confiar em mim.”</blockquote><p>Uma candidatura baseada em contexto, imparcialidade e uma quantidade questionável de confiança.</p><button class="btn" id="enter">ENTRAR NA CAMPANHA →</button></section>
+
+<section id="ctx" class="s" data-st="0"><h2 class="r">Antes de começarmos...</h2><div class="txt r"><p>O servidor está procurando até dois novos Escudeiros da Moderação.</p><p>A função é voluntária, não remunerada e envolve ajudar a comunidade durante um período inicial de avaliação.</p><p>Os candidatos precisam sobreviver ao processo seletivo, à campanha e, principalmente, à própria comunidade.</p><p class="gold">E aparentemente eu decidi participar disso.</p></div>
+<div class="box r"><b>STATUS DO CANDIDATO</b><p>🛡️ Candidato: Pietro</p><p>⚔️ Classe: Escudeiro em potencial</p><p>🧠 Estratégia: tentar não fazer besteira</p><p>❤️ Popularidade: assunto delicado</p><p>🔨 Martelo de ban: ainda não disponível</p></div></section>
+
+<section id="caso" class="s" data-st="0"><h2 class="r">CASO Nº 001</h2><h3 class="r">O amigo merece ser punido?</h3>
+<div class="disc r"><div class="m"><u>A</u><span><b>Pessoa A</b> “Para com isso.”</span></div><div class="m"><u>B</u><span><b>Pessoa B</b> <em>continua discutindo.</em></span></div><div class="m"><u>#</u><span><b>CHAT</b> “PUNE!” “BAN!” “MUTE!” “FAZ ALGUMA COISA!”</span></div><div class="m"><u>🤝</u><span>Pessoa B é amiga do candidato.</span></div><div class="m dm"><u>B</u><span><b>Mensagem privada</b> “Foi só brincadeira. Você vai mesmo fazer alguma coisa contra mim?”</span></div></div>
+<p class="warn r">⚠️ Problema: o candidato ainda não possui o contexto completo.</p></section>
+
+<section id="regra" class="s" data-st="1"><h2 class="big r">NÃO DECIDA AINDA.</h2><p class="r">A primeira coisa que eu faria seria não aplicar uma punição imediatamente.</p><h3 class="gold r">Contexto primeiro.</h3><ul id="evid"></ul></section>
+
+<section id="chat" class="s storm" data-st="1"><div id="pop"></div><div id="calm"><h2 class="big">A PRESSÃO DO CHAT NÃO É O CONTEXTO.</h2><p>Só porque várias pessoas estão pedindo uma punição não significa automaticamente que ela seja justa ou esteja de acordo com as regras.</p><h3 class="gold">Primeiro entender. Depois decidir.</h3></div></section>
+
+<section id="amigo" class="s" data-st="1"><h2 class="r">E SE FOR MEU AMIGO?</h2><p class="r q">“Foi só brincadeira. Você vai mesmo fazer alguma coisa contra mim?”</p><div class="duo r"><button class="btn red" data-c="0">🟥 PROTEGER O AMIGO</button><span>versus</span><button class="btn blue" data-c="1">🟦 SEGUIR AS REGRAS</button></div><div id="ans" class="box"></div><h2 class="big gold r">IMPARCIALIDADE</h2><p class="r">Se meu amigo quebrar uma regra, a amizade não apaga a regra.<br>Se alguém que não gosta de mim não quebrar nenhuma regra, antipatia não deveria criar uma infração.</p></section>
+
+<section id="fluxo" class="s" data-st="2"><h2 class="r">COMO EU TOMARIA A DECISÃO</h2><ol id="flow"></ol></section>
+<section id="princ" class="s" data-st="2"><h2 class="r">O QUE EU DEFENDO</h2><div class="grid" id="pr"></div></section>
+<section id="sim" class="s" data-st="2"><h2 class="big r">AGORA É SUA VEZ.</h2><p class="r">Você está no lugar do Escudeiro: uma discussão esquentou, o chat pede punição e a envolvida é sua amiga. O que faria?</p><div class="grid" id="opts"></div><div id="res" class="box"></div></section>
+
+<section id="acus" class="s" data-st="3"><h2 class="r red">🚨 ACUSAÇÕES CONTRA PIETRO</h2><p class="r">Durante minha campanha, algumas acusações extremamente graves foram levantadas. <small>(Toque no card para ver a defesa.)</small></p><div class="grid" id="ac"></div><h3 class="r">Eu poderia fingir que essas críticas não existem.<br><span class="gold">Prefiro admitir que elas existem.</span></h3></section>
+<section id="prom" class="s" data-st="3"><h2 class="r">🗳️ PROMESSAS ELEITORAIS</h2><div class="grid" id="pm"></div></section>
+<section id="faq" class="s" data-st="3"><h2 class="r">PERGUNTE AO CANDIDATO</h2><div id="fq" class="txt"></div></section>
+
+<section id="ia" class="s" data-st="3"><div class="runas r">ᚠ 01 ᚱ 10 ᛉ 01 ᚦ</div><h2 class="r glitch">🤖 SIM, EU USEI IA.</h2><p class="r">Antes que alguém pergunte...</p><div class="term r" id="term" aria-live="polite"></div>
+<div class="box r"><b>FERRAMENTA ≠ CANDIDATO</b><p>Eu usei IA para me ajudar a transformar minhas ideias em uma campanha mais criativa e apresentável.</p><p>A ferramenta pode ajudar a escrever, programar e organizar tudo isso.</p><p>Mas quem decidiu participar dessa seleção, escolher o que colocar aqui e assumir a responsabilidade pelo que está sendo apresentado sou eu.</p></div>
+<h3 class="r">A IA pode construir meu site.<br><span class="gold">Ela não vai ter que conviver com vocês depois.</span></h3>
+<p class="r"><small>Portanto, sim: vocês descobriram o segredo.<br>A campanha tem assistência de IA.<br>A candidatura continua sendo minha.</small></p>
+<div class="box seal r"><b>DECLARAÇÃO OFICIAL DO CANDIDATO</b><p>“Se eu ganhar, foi mérito meu.”</p><p>“Se eu perder, foi culpa da IA.”</p><small>— Pietro, provavelmente</small></div></section>
+<section id="fim" class="s end" data-st="4"><div id="seq"></div><button class="btn" id="top">VOLTAR AO INÍCIO</button></section>
+<section id="voto" class="s" data-st="4"><div class="runas r">⚔ ᚦ 🛡 ᛟ ⏳ ᚱ 🛡 ᚦ ⚔</div><h2 class="big r">🗳️ AGORA É COM VOCÊ</h2>
+<div class="txt r"><p>Você chegou até o final da campanha.</p><p>Agora eu já falei o que penso.<br>Mostrei como lidaria com a situação.<br>Expliquei minhas ideias.</p><p class="gold"><b>A decisão agora é de vocês.</b></p></div>
+<div id="vbox" class="box vb r"></div><div id="vres"></div><div id="vops"></div>
+<div class="fin r"><h3>A ELEIÇÃO CONTINUA...</h3><p>Cada voto representa uma pessoa da comunidade.<br>Obrigado por ter chegado até aqui.</p><h2 class="big">⚔️ PIETRO PARA ESCUDEIRO</h2><p class="gold"><b>Você não precisa gostar de mim. Só precisa decidir se consegue confiar em mim.</b></p></div></section>
+</main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const card=(b,t,a,tag='div')=>`<${tag} class="card r"><b>${b}</b>${t}${a?`<div class="a">${a}</div>`:''}</${tag}>`;
+$('#evid').innerHTML=['Mensagens anteriores','O que iniciou a discussão','Pedidos anteriores para parar','Regras relevantes','Histórico da situação','Versão dos dois envolvidos'].map(t=>`<li>🔎 ${t}</li>`).join('');
+$('#flow').innerHTML=['ENTENDER O CONTEXTO','OUVIR OS ENVOLVIDOS','VERIFICAR AS REGRAS','AVALIAR O QUE ACONTECEU','TOMAR A MEDIDA ADEQUADA','SE NÃO SOUBER → PEDIR AJUDA'].map(t=>`<li>${t}</li>`).join('');
+$('#pr').innerHTML=[['🧠 CONTEXTO','Uma mensagem isolada nem sempre conta toda a história.'],['⚖️ IMPARCIALIDADE','Amigo não ganha passe livre. Inimigo também não ganha punição gratuita.'],['🗣️ DIÁLOGO','Antes de tomar decisões importantes, ouvir os envolvidos.'],['🔨 RESPONSABILIDADE','Ter uma ferramenta não significa precisar utilizá-la.'],['🤝 SABER PEDIR AJUDA','Se uma situação estiver além da minha autoridade ou experiência, pedir ajuda é melhor do que inventar uma solução.']].map(([b,t])=>card(b,t)).join('');
+const opts=[['🔴 PUNIR IMEDIATAMENTE','Rápido, mas pode resultar em uma decisão sem contexto suficiente.'],['🟡 IGNORAR','Evita uma decisão precipitada, mas pode deixar uma infração sem resposta.'],['🔵 INVESTIGAR O CONTEXTO','Permite entender melhor a situação antes de decidir.'],['🟣 CHAMAR OUTRO MODERADOR','Pode ser apropriado quando existe conflito de interesse ou quando a situação é complexa.']];
+$('#opts').innerHTML=opts.map(([b],i)=>`<button class="card r" data-i="${i}"><b>${b}</b></button>`).join('');
+$('#opts').onclick=e=>{const c=e.target.closest('button');if(!c)return;$$('#opts .card').forEach(x=>x.style.borderColor='');c.style.borderColor='var(--gold)';$('#res').innerHTML=`<b>${opts[c.dataset.i][0]}</b>${opts[c.dataset.i][1]}<h3 style="margin-top:1rem">NO MEU CASO, EU COMEÇARIA PELO CONTEXTO.</h3>`};
+const ans=['<b>PROTEGER O AMIGO</b>Seria injusto com todos os outros. Amizade não deveria significar imunidade.','<b>SEGUIR AS REGRAS</b>A regra vale para todos, inclusive para quem é próximo de mim. Amizade não deveria significar imunidade.'];
+$('.duo').onclick=e=>{const b=e.target.closest('[data-c]');if(b)$('#ans').innerHTML=ans[b.dataset.c]};
+$('#ac').innerHTML=[['“PIETRO É INSUPORTÁVEL.”','Não possuo defesa para essa acusação.<br>Próxima.'],['“PIETRO FALA DEMAIS.”','Isso é calúnia. Eu apenas forneço informações em quantidade superior à solicitada.'],['“PIETRO VAI VIRAR UM DITADOR.”','Prometo que não. Inclusive, já determinei democraticamente que essa acusação está proibida.<br><i>Brincadeira.</i>'],['“EU NÃO GOSTO DO PIETRO.”','Essa é uma opinião perfeitamente válida. Não tenho intenção de obrigar ninguém a gostar de mim.'],['“PIETRO NÃO DEVERIA SER MODERADOR.”','Essa também é uma opinião válida. É justamente por isso que existe uma eleição.']].map(([b,a])=>card(b,'',a,'button')).join('');
+$('#ac').onclick=e=>{const c=e.target.closest('.card');if(c)c.classList.toggle('open')};
+$('#pm').innerHTML=[['🐕 PROMESSA Nº 01','Todo caso complexo será analisado por um cachorro imaginário. A decisão dele será extremamente imparcial. Ele não sabe ler.'],['⚔️ PROMESSA Nº 02','Fim da corrupção no Discord. Não sei qual corrupção. Mas vou acabar com ela.'],['📜 PROMESSA Nº 03','Todo acusado terá direito à defesa.'],['🚨 PROMESSA Nº 04','Quem escrever “calma adm” será questionado sobre por que não está calmo.'],['🛡️ PROMESSA Nº 05','Não vou abusar do poder.<br><small>Termos e condições podem se aplicar.</small>']].map(([b,t])=>card(b,t)).join('');
+$('#fq').innerHTML=[['Por que você quer ser Escudeiro?','Porque gosto da comunidade e gostaria de ajudar de maneira mais direta.'],['Você vai proteger seus amigos?','Não. Amizade não deveria funcionar como imunidade.'],['E alguém que não gosta de você?','Se não quebrar nenhuma regra, não deveria receber punição simplesmente por não gostar de mim.'],['Você acha que vai ganhar?','Quem decide isso são vocês.'],['Por que eu deveria votar em você?','Você não deveria votar em mim simplesmente porque eu pedi. Veja a campanha, faça perguntas e decida se você confia em mim para exercer essa responsabilidade.']].map(([q,a])=>`<details class="r"><summary>“${q}”</summary><p>${a}</p></details>`).join('');
+const fim=[['t','NO FINAL...'],['','Eu sei que não sou o candidato mais popular.'],['','Não vou fingir que sou.'],['','Também não vou prometer que nunca vou errar.'],['k','Mas posso prometer que vou tentar separar:'],['t gold','amizade de regra.'],['t gold','opinião de fato.'],['t gold','pressão de contexto.'],['t gold','punição de vingança.'],['t','VOCÊ NÃO PRECISA GOSTAR DE MIM.'],['t','SÓ PRECISA DECIDIR SE CONSEGUE CONFIAR EM MIM.'],['t red','⚔️ PIETRO PARA ESCUDEIRO']];
+$('#seq').innerHTML=fim.map(([c,t])=>`<div class="l ${c}">${t}</div>`).join('');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('on');t.querySelectorAll('.r,li,.l').forEach((x,i)=>setTimeout(()=>x.classList.add('on'),(t.id==='fim'?1300:130)*i));io.unobserve(t)}),{threshold:.25});
+$$('.s,.r').forEach(x=>io.observe(x));
+// pressão do chat
+let stormed=false;new IntersectionObserver(([e])=>{if(!e.isIntersecting||stormed)return;stormed=true;const w=['BAN!','MUTE!','ELE JÁ FEZ ISSO ANTES!','PUNE LOGO!','ADM????'],p=$('#pop');const t=setInterval(()=>{const d=document.createElement('div');d.className='pp';d.textContent=w[Math.random()*5|0];d.style.left=Math.random()*70+'%';d.style.top=Math.random()*85+'%';p.append(d)},170);setTimeout(()=>{clearInterval(t);p.innerHTML='';$('#calm').classList.add('on')},4200)},{threshold:.6}).observe($('#chat'));
+// progresso
+const secs=$$('.s'),lis=$$('#bar li');addEventListener('scroll',()=>{const h=document.body.scrollHeight-innerHeight;$('#fill').style.width=scrollY/h*100+'%';let st=0;secs.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.5)st=+s.dataset.st});lis.forEach((l,i)=>l.classList.toggle('on',i<=st))},{passive:true});dispatchEvent(new Event('scroll'));
+$('#enter').onclick=()=>{$('#slash').classList.add('go');setTimeout(()=>$('#ctx').scrollIntoView(),450);setTimeout(()=>$('#slash').classList.remove('go'),1050)};
+$('#top').onclick=()=>scrollTo({top:0});
+// brasas
+const cv=$('#fx'),cx=cv.getContext('2d');let ps=[];const rs=()=>{cv.width=innerWidth;cv.height=innerHeight;ps=Array.from({length:innerWidth<600?25:55},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.8+.4,v:Math.random()*.5+.15}))};rs();addEventListener('resize',rs);
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)(function f(){cx.clearRect(0,0,cv.width,cv.height);ps.forEach(p=>{p.y-=p.v;p.x+=Math.sin(p.y/40)*.3;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.fillStyle='rgba(200,110,40,.55)';cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()});requestAnimationFrame(f)})();
+// som opcional: drone sintetizado, volume baixo, só após clique
+let ac,g;$('#snd').onclick=e=>{const b=e.currentTarget;if(!ac){ac=new (window.AudioContext||window.webkitAudioContext)();g=ac.createGain();g.gain.value=0;g.connect(ac.destination);[55,82.4,110].forEach(f=>{const o=ac.createOscillator();o.type='triangle';o.frequency.value=f;o.connect(g);o.start()})}const on=!b.classList.contains('on');b.classList.toggle('on',on);g.gain.setTargetAtTime(on?.04:0,ac.currentTime,.5)};
+
+const tl=[['🤖 O site? IA.'],['🤖 Parte das ideias? IA.'],['🤖 O código? Definitivamente IA.'],['🧠 A decisão de participar dessa maluquice?','Infelizmente minha.']],tg=[];
+$('#term').innerHTML=tl.map(l=>`<div><span class="rn">ᚱ&gt;</span> <span></span>${l[1]?'<div class="gold"></div>':''}</div>`).join('');
+[...$('#term').children].forEach((d,i)=>{tg.push([d.children[1],tl[i][0]]);if(tl[i][1])tg.push([d.children[2],tl[i][1]])});
+let typed=0;new IntersectionObserver(async([e])=>{if(!e.isIntersecting||typed)return;typed=1;const q=matchMedia('(prefers-reduced-motion:reduce)').matches,z=ms=>new Promise(r=>setTimeout(r,q?0:ms));await z(700);for(const [el,t] of tg){el.classList.add('cur');for(const c of t){el.textContent+=c;await z(30)}el.classList.remove('cur');await z(380)}},{threshold:.6}).observe($('#term'));
+
+(()=>{
+/* ===== CONFIGURAÇÃO (valores PÚBLICOS; veja GUIA-CONFIGURACAO.md) ===== */
+const SUPABASE_URL='https://fjmlorqiygbhmtyhukgn.supabase.co',SUPABASE_ANON_KEY='sb_publishable_ceTMiDmVJgHW-5tuvYVWmQ_ANdrWbSN';
+const box=$('#vbox'),rE=$('#vres'),oE=$('#vops');
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const put=(...n)=>box.replaceChildren(...n),wait=ms=>new Promise(r=>setTimeout(r,ms));
+const on=/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(SUPABASE_URL)&&SUPABASE_ANON_KEY.length>30&&window.supabase;
+if(!on){put(el('p','err','⚙️ A votação ainda não foi ligada (configuração do Supabase pendente).'));return}
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);let voted=false;
+const nm=u=>{const m=u.user_metadata||{};return(m.custom_claims&&m.custom_claims.global_name)||m.full_name||m.name||'discord'};
+function login(){const b=el('button','btn','🔵 ENTRAR COM DISCORD PARA VOTAR');b.onclick=()=>{try{sessionStorage.setItem('goVoto','1')}catch(e){}sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin+location.pathname}})};put(el('p','','Cada conta do Discord vota uma única vez.'),b)}
+function form(u){let c=null;const who=el('div','who');const m=u.user_metadata||{};if((m.avatar_url||'').startsWith('https://cdn.discordapp.com/')){const i=el('img');i.src=m.avatar_url;i.alt='';who.append(i)}
+who.append(el('span','','Votando como: @'+nm(u)));const so=el('button','lnk','sair');so.onclick=()=>sb.auth.signOut();who.append(so);
+const g=el('div','vgrid'),bs=[['yes','🛡️ SIM'],['no','⚔️ NÃO']].map(([v,t])=>{const b=el('button','btn vbtn',t);b.dataset.v=v;b.onclick=()=>{c=v;bs.forEach(x=>x.classList.toggle('sel',x===b));go.disabled=false};return b});g.append(...bs);
+const ta=el('textarea');ta.maxLength=500;ta.placeholder='Escreva sua opinião sobre a candidatura...';ta.setAttribute('aria-label','Opinião opcional');const ct=el('div','cnt','0 / 500');ta.oninput=()=>ct.textContent=ta.value.length+' / 500';
+const go=el('button','btn','REGISTRAR MEU VOTO');go.disabled=true;const er=el('p','err');er.setAttribute('role','alert');
+go.onclick=async()=>{go.disabled=true;er.textContent='';const{error}=await sb.from('votes').insert({vote:c,opinion:ta.value.trim()||null});if(!error)return done(true);if(error.code==='23505')return done(false);er.textContent='Não consegui registrar o voto. Tente de novo.';go.disabled=false};
+put(who,el('h3','','Você votaria em Pietro para Escudeiro?'),g,el('h3','','💬 Quer deixar sua opinião?'),ta,ct,go,er,el('small','','Sua conta do Discord fica associada ao voto. Opiniões aparecem sem nome.'))}
+async function done(fresh){voted=true;const k=el('div','tlx');const L=[['','🔒 VOCÊ JÁ VOTOU'],['','Seu voto já foi registrado nesta eleição.']];
+if(fresh){k.append(el('div','hg','⏳'));L.splice(0,2,['','LINHA DO TEMPO SALVA'],['','Seu voto foi registrado.'],['','Agora não há como voltar atrás.'],['','Obrigado por participar da eleição.'])}
+L.forEach(([,t],i)=>{const p=el('p',i===0?'gold':'',t);if(i===0)p.style.fontWeight='700';k.append(p)});put(k);
+[...k.querySelectorAll('p')].forEach((p,i)=>setTimeout(()=>p.classList.add('on'),(fresh?900:200)*i+100));
+await wait(fresh?2600:0);show()}
+async function show(){const{data}=await sb.rpc('get_results');const r=(data&&data[0])||{yes_count:0,no_count:0},y=+r.yes_count,n=+r.no_count,t=y+n,p=v=>t?Math.round(v/t*1000)/10:0;
+const row=(l,v)=>{const w=el('div','rw');w.append(el('b','',`${l} — ${v} ${v===1?'voto':'votos'} (${p(v)}%)`));const b=el('div','bar'),i=el('i');b.append(i);w.append(b);requestAnimationFrame(()=>setTimeout(()=>i.style.width=p(v)+'%',60));return w};
+rE.replaceChildren(el('h2','','RESULTADO DA ELEIÇÃO'),row('🛡️ SIM',y),row('⚔️ NÃO',n),el('p','gold','Total de votos: '+t));
+const q=await sb.rpc('get_opinions'),o=q.data||[];oE.replaceChildren(el('h2','','O QUE A COMUNIDADE ESTÁ DIZENDO'));
+if(!o.length)oE.append(el('p','gold','Ainda não existem opiniões. Seja o primeiro.'));
+o.forEach(x=>{const c=el('div','card');c.append(el('span','','“'+x.opinion+'”'),el('small','',' — membro da comunidade'));oE.append(c)})}
+async function start(){const{data:{session}}=await sb.auth.getSession();try{if(sessionStorage.getItem('goVoto')&&session){sessionStorage.removeItem('goVoto');$('#voto').scrollIntoView()}}catch(e){}
+if(!session){voted=false;rE.replaceChildren();oE.replaceChildren();return login()}
+const{data,error}=await sb.from('votes').select('id').limit(1);if(error)return put(el('p','err','Erro ao consultar o voto. Recarregue a página.'));data.length?done(false):form(session.user)}
+sb.auth.onAuthStateChange(e=>{if(e==='SIGNED_OUT')start()});start();
+setInterval(()=>{if(voted&&!document.hidden)show()},30000);
+})();
+</script></body></html>
