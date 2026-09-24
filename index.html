@@ -65,6 +65,7 @@ textarea{width:100%;min-height:110px;background:#0a0807;color:var(--parch);borde
 #vres,#vops{width:100%;max-width:640px;display:grid;gap:1rem}.rw{text-align:left}.rw .bar{height:18px;background:#000;border:1px solid var(--gold);margin:.3rem 0}.rw .bar i{display:block;height:100%;width:0;transition:width 1.3s;background:linear-gradient(90deg,var(--blood),var(--gold))}
 .tlx{display:grid;gap:.6rem}.tlx p{opacity:0;transform:translateY(10px);transition:1s}.tlx p.on{opacity:1;transform:none}.hg{font-size:2.6rem;display:inline-block;animation:sp 3s ease-in-out infinite}@keyframes sp{to{transform:rotate(360deg)}}
 .fin{display:grid;gap:1rem;margin-top:3rem}
+.op{display:flex;gap:.8rem;align-items:flex-start;overflow-wrap:anywhere}.op img,.op u{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--gold)}.op u{background:var(--blood);display:grid;place-items:center;text-decoration:none;font:700 1rem system-ui}.op b{margin:0 0 .15rem;font:700 .85rem system-ui}
 </style></head><body>
 <canvas id="fx"></canvas><div id="slash"></div>
 <nav id="bar"><i id="fill"></i><ol><li>CASO</li><li>INVESTIGAÇÃO</li><li>DECISÃO</li><li>CAMPANHA</li><li>FINAL</li></ol></nav>
@@ -141,7 +142,7 @@ let typed=0;new IntersectionObserver(async([e])=>{if(!e.isIntersecting||typed)re
 
 (()=>{
 /* ===== CONFIGURAÇÃO (valores PÚBLICOS; veja GUIA-CONFIGURACAO.md) ===== */
-const SUPABASE_URL='https://fjmlorqiygbhmtyhukgn.supabase.co',SUPABASE_ANON_KEY='sb_publishable_ceTMiDmVJgHW-5tuvYVWmQ_ANdrWbSN';
+const SUPABASE_URL='https://fjmlorqiygbhmtyhukgn.supabase.co',SUPABASE_ANON_KEY='1552552532864405566';
 const box=$('#vbox'),rE=$('#vres'),oE=$('#vops');
 const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
 const put=(...n)=>box.replaceChildren(...n),wait=ms=>new Promise(r=>setTimeout(r,ms));
@@ -156,7 +157,7 @@ const g=el('div','vgrid'),bs=[['yes','🛡️ SIM'],['no','⚔️ NÃO']].map(([
 const ta=el('textarea');ta.maxLength=500;ta.placeholder='Escreva sua opinião sobre a candidatura...';ta.setAttribute('aria-label','Opinião opcional');const ct=el('div','cnt','0 / 500');ta.oninput=()=>ct.textContent=ta.value.length+' / 500';
 const go=el('button','btn','REGISTRAR MEU VOTO');go.disabled=true;const er=el('p','err');er.setAttribute('role','alert');
 go.onclick=async()=>{go.disabled=true;er.textContent='';const{error}=await sb.from('votes').insert({vote:c,opinion:ta.value.trim()||null});if(!error)return done(true);if(error.code==='23505')return done(false);er.textContent='Não consegui registrar o voto. Tente de novo.';go.disabled=false};
-put(who,el('h3','','Você votaria em Pietro para Escudeiro?'),g,el('h3','','💬 Quer deixar sua opinião?'),ta,ct,go,er,el('small','','Sua conta do Discord fica associada ao voto. Opiniões aparecem sem nome.'))}
+put(who,el('h3','','Você votaria em Pietro para Escudeiro?'),g,el('h3','','💬 Quer deixar sua opinião?'),ta,ct,go,er,el('small','','Sua conta do Discord fica associada ao voto. Se escrever uma opinião, ela aparece com seu nome e foto do Discord (o seu voto SIM/NÃO não aparece).'))}
 async function done(fresh){voted=true;const k=el('div','tlx');const L=[['','🔒 VOCÊ JÁ VOTOU'],['','Seu voto já foi registrado nesta eleição.']];
 if(fresh){k.append(el('div','hg','⏳'));L.splice(0,2,['','LINHA DO TEMPO SALVA'],['','Seu voto foi registrado.'],['','Agora não há como voltar atrás.'],['','Obrigado por participar da eleição.'])}
 L.forEach(([,t],i)=>{const p=el('p',i===0?'gold':'',t);if(i===0)p.style.fontWeight='700';k.append(p)});put(k);
@@ -167,7 +168,7 @@ const row=(l,v)=>{const w=el('div','rw');w.append(el('b','',`${l} — ${v} ${v==
 rE.replaceChildren(el('h2','','RESULTADO DA ELEIÇÃO'),row('🛡️ SIM',y),row('⚔️ NÃO',n),el('p','gold','Total de votos: '+t));
 const q=await sb.rpc('get_opinions'),o=q.data||[];oE.replaceChildren(el('h2','','O QUE A COMUNIDADE ESTÁ DIZENDO'));
 if(!o.length)oE.append(el('p','gold','Ainda não existem opiniões. Seja o primeiro.'));
-o.forEach(x=>{const c=el('div','card');c.append(el('span','','“'+x.opinion+'”'),el('small','',' — membro da comunidade'));oE.append(c)})}
+o.forEach(x=>{const c=el('div','card op'),a=x.discord_avatar_url||'',nm=x.discord_username||'discord';let v;if(a.startsWith('https://cdn.discordapp.com/')){v=el('img');v.src=a;v.alt='';v.loading='lazy'}else v=el('u','',nm[0].toUpperCase());const d=el('div');d.append(el('b','','@'+nm),el('span','','“'+x.opinion+'”'));c.append(v,d);oE.append(c)})}
 async function start(){const{data:{session}}=await sb.auth.getSession();try{if(sessionStorage.getItem('goVoto')&&session){sessionStorage.removeItem('goVoto');$('#voto').scrollIntoView()}}catch(e){}
 if(!session){voted=false;rE.replaceChildren();oE.replaceChildren();return login()}
 const{data,error}=await sb.from('votes').select('id').limit(1);if(error)return put(el('p','err','Erro ao consultar o voto. Recarregue a página.'));data.length?done(false):form(session.user)}
